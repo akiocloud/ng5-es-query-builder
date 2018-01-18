@@ -9,7 +9,9 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        { "glob": "**/*", "input": "../node_modules/lzma/src", "output": "dist/vendor" }
+        
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -19,9 +21,39 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/select2/dist/css/select2.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "mirage.assets/vendor/jquery.layout/jquery.layout.css",
+        "mirage.assets/css/app.component.css",
+        "mirage.assets/css/autocomplete.css",
+        "mirage.assets/css/docsidebar.css",
+        "mirage.assets/css/features.css",
+        "mirage.assets/css/features_sidebar.css",
+        "mirage.assets/css/header.css",
+        "mirage.assets/css/learn.css",
+        "mirage.assets/css/loading.css",
+        "mirage.assets/css/main.css",
+        "mirage.assets/css/modal.css",
+        "mirage.assets/css/query.css",
+        "mirage.assets/css/responsive.css",
+        "mirage.assets/css/result.css",
+        "mirage.assets/css/select2.css",
+        "mirage.assets/css/variables.css",
+        "mirage.assets/css/singlequery.component.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/select2/dist/js/select2.full.min.js",
+        "mirage.assets/js/helper.js",
+        "mirage.assets/vendor/jquery.layout/jquery-ui.js",
+        "mirage.assets/vendor/jquery.layout/jquery.layout.js",
+        "mirage.assets/vendor/jquery.simulate.js",
+        "mirage.assets/vendor/JSONURL.js",
+        "mirage.assets/vendor/urlsafe-base64.bundle.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
