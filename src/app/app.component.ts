@@ -34,6 +34,7 @@ export class AppComponent implements OnInit
   };
 
   result = {
+    "queryId" : 1,
     "resultQuery": {
       // "type": "",
       "result": [],
@@ -53,8 +54,8 @@ export class AppComponent implements OnInit
     },
     // "sort": [],
     "joiningQuery": [
-      // "",
-      // "nested"
+      "",
+      "nested"
     ]
   };
 }
