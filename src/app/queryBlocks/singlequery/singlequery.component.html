@@ -1,3 +1,4 @@
+
 <div class="form-group single_query internal-query col-xs-12 query-{{queryIndex}}-{{internalIndex}}" [ngClass]="{query_complete: query.field !== '' && query.query !== ''}">
 	<div class="action-btn-group">
 		<a href="javascript:void(0)" (click)="removeQuery()" class="btn btn-grey add_condition_delete">
@@ -5,15 +6,84 @@
 		</a>
 	</div>
 	<!-- field part start -->
-	<editable class="col-xs-3 pd-l0 field-select" [editableField]="query.selectedField" [editPlaceholder]="'field'" [editableInput]="'select2'" [result]="result" [selectOption]="result.resultQuery.availableFields" [querySelector]="querySelector"  [selector]="selector.field" (callback)="analyzeTest($event)"></editable>
+
+
+	
+	<!--			
+	-->
+	<div>
+		<mat-form-field>
+			<mat-select
+				placeholder="Field" 
+				[(value)]="query.selectedField"
+				(change)="fieldSelectionChange()">
+				
+				<mat-option
+				*ngFor="let field of result.resultQuery.availableFields; let i = index;" 
+				[value]="field.name">{{ field.name }}</mat-option>
+				
+			</mat-select>
+		</mat-form-field>
+	</div>
+	
+	<!--
+	<editable
+		class="col-xs-3 pd-l0 field-select" 
+		[editableField]="query.selectedField" 
+		[editPlaceholder]="'field'" 
+		[editableInput]="'selectField'" 
+		[result]="result" 
+		[selectOption]="result.resultQuery.availableFields" 
+		[querySelector]="querySelector"  
+		[selector]="selector.field" 
+		(callback)="analyzeTest($event)"></editable>
+	-->
+	
+	<!--
+	<pre> {{ result.resultQuery.availableFields | json }} </pre>
+	<pre> {{ query.selectedField | json }} </pre>
+	<pre> {{ result | json }} </pre>
+	<pre> {{ querySelector | json }} </pre>
+	<pre> {{ selector.field | json }} </pre>
+	-->
+		
 	<!-- field part end -->
 	<!-- query part start -->
-	<div class="col-xs-3 pd-l0"  
-		*ngIf="query.analyzeTest != '' && (queryList.allowedDataTypes.indexOf(query.field.type) > -1)">
+	<div class="?col-xs-3 ?pd-l0"
+		*ngIf="query.selectedField && query.analyzeTest != '' && (queryList.allowedDataTypes.indexOf(query.field.type) > -1)">
+
+		<!--
+		-->
+		<div>
+			<mat-form-field>
+				<mat-select
+					placeholder="Query" 
+					[(value)]="query.selectedQuery"
+					(change)="querySelectionChange()">
+		
+					<mat-option
+						*ngFor="let query of queryList[query.analyzeTest][query.type];" 
+						[value]="query">{{ query }}</mat-option>
+		
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<!--
+
+			<pre> {{ query.analyzeTest | json }} </pre>
+			<pre> {{ query.type | json }} </pre>
+			<pre> {{ queryList | json }} </pre>
+		
+
+			
+		<pre> {{ querySelector | json }} </pre>
+		<pre> {{ selector.query | json }} </pre>
+		<pre> {{ informationList | json }} </pre>
+
 		<editable class="query-select" 
 			[editableField]="query.selectedQuery" 
 			[editPlaceholder]="'query'" 
-			[editableInput]="'select2'" 
+			[editableInput]="'select'" 
 			[result]="result" 
 			[selectOption]="queryList[query.analyzeTest][query.type]" 
 			[querySelector]="querySelector"  
@@ -22,9 +92,10 @@
 			(callback)="queryCallback($event)" 
 			(setDocSample)="setDocSampleEve($event);"
 			[showInfoFlag]="true"></editable>
+		-->
+
 	</div>
 	<!-- query part end -->
-	<!-- load the slector for selected query -->
 		
 	<!-- match query start -->
 	<div [hidden]="query.selectedQuery != 'match'" class="row">
@@ -250,7 +321,7 @@
 	</div>
 	<!-- regexp query end -->
 
-	<!-- regexp query start -->
+	<!-- fuzzy query start -->
 	<div [hidden]="query.selectedQuery != 'fuzzy'" class="row">
 		<fuzzy-query 
 			[appliedQuery]="query.appliedQuery"
@@ -262,7 +333,7 @@
 			>
 		</fuzzy-query>
 	</div>
-	<!-- regexp query end -->
+	<!-- fuzzy query end -->
 	
 	<!-- ids query start -->
 	<div [hidden]="query.selectedQuery != 'ids'" class="row">

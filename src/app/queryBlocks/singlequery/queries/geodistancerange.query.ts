@@ -44,7 +44,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angu
                                 class = "additional-option-select-{{i}}"
                                 [editableField]="singleOption.name"
                                 [editPlaceholder]="'--choose option--'"
-                                [editableInput]="'select2'"
+                                [editableInput]="'select'"
                                 [selectOption]="options"
                                 [passWithCallback]="i"
                                 [selector]="'additional-option-select'"

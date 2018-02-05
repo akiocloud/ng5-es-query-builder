@@ -204,22 +204,44 @@ export class SinglequeryComponent implements OnInit, OnChanges, AfterViewInit {
 		this.buildQuery();
 	}
 
+	/*
+	 * when editing via mat-select instead of old editable,
+	 * reuse the existing logic after changing the value
+	 */
+	fieldSelectionChange() {
+		for (let i in this.result.resultQuery.availableFields) {
+			let field = this.result.resultQuery.availableFields[i];
+			if ( field.name == this.query.selectedField ) {
+				this.analyzeTest(i);
+			}
+		}
+	}
+
 	// field select - change event
 	// On selecting the field, we are checking if field is analyzed or not
 	// and according to that show the available query
 	analyzeTest(res) {
-		$(res.selector).parents('.editable-pack').removeClass('on');
-		this.query.field = this.getField(res.val)[0];
+		//$(res.selector).parents('.editable-pack').removeClass('on');
+		this.query.field = this.result.resultQuery.availableFields[res]; // this.getField(res.val)[0];
 		this.query.analyzeTest = this.query.field.index === 'not_analyzed' ? 'not_analyzed' : 'analyzed';
 		this.query.type = this.query.field.type;
-		this.query.selectedField = res.val;
+		this.query.selectedField = this.query.field.name; // res.val;
+	}
+
+	/*
+	 * when editing via mat-select instead of old editable,
+	 * rewrite the existing logic after changing the value
+	 */
+	querySelectionChange() {
+		this.query.query = this.query.selectedQuery;
+		this.buildQuery();
 	}
 
 	// Query select - change event
 	queryCallback(res) {
-		res.selector.parents('.editable-pack').removeClass('on');
-		this.query.query = res.val;
-		this.query.selectedQuery = this.queryList[this.query.analyzeTest][this.query.type][this.query.query];
+		//res.selector.parents('.editable-pack').removeClass('on');
+		this.query.query = this.queryList[this.query.analyzeTest][this.query.type][res];
+		this.query.selectedQuery = this.queryList[this.query.analyzeTest][this.query.type][res];
 		this.buildQuery();
 	}
 

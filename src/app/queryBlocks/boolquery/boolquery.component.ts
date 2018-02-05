@@ -11,6 +11,7 @@ declare var $: any;
 })	//	, 'editorHookHelp', 'urlShare'
 
 export class BoolqueryComponent implements OnInit, OnChanges {
+
 	public config: Object;
 	public queryList: any = this.queryList;
 	public addQuery: any;
@@ -88,10 +89,12 @@ export class BoolqueryComponent implements OnInit, OnChanges {
 	exeBuild() {
 		setTimeout(() => this.buildQuery(), 300);
 	}
+	/*
 	booleanChange(boolVal: any) {
 		this.query.boolparam = boolVal;
 		this.exeBuild();
 	}
+	*/
 	joiningQueryChange(val: any) {
 		if (val.val) {
 			val = this.joiningQuery.indexOf(val.val);

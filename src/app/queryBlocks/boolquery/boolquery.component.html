@@ -10,6 +10,21 @@
 				<i class="fa fa-plus"></i> Sub Query
 			</button>
 			<div class="col-xs-6">
+				
+				<mat-form-field>
+					<mat-select
+						placeholder="Query" 
+						[(value)]="query.boolparam" 
+						(change)="exeBuild()">
+
+						<mat-option
+							*ngFor="let boolQuery of queryList.boolQuery; let i = index;" 
+							[value]="i">{{ boolQuery }}</mat-option><!--(onSelectionChange)="booleanSelectionChange()"-->
+					</mat-select>
+				</mat-form-field>
+				
+				<!--
+				
 				<editable 
 					[editableField]="queryList.boolQuery[query.boolparam]" 
 					[editableModal]="query.boolparam" 
@@ -18,11 +33,9 @@
 					[selectOption]="queryList.boolQuery" 
 					(callback)="booleanChange($event)">
 				</editable>
-				<!--
-				<select class="form-control form-element" [(ngModel)]="query.boolparam" (change)="exeBuild();">
-					<option *ngFor="let oo of queryList.boolQuery, let i=index" [value]="i">{{oo}}</option>
-				</select> 
+				
 				-->
+				
 			</div>
 			<div class="col-xs-6" *ngIf="queryList.boolQuery[query.boolparam] == 'should'">
 				<div class="form-group form-element">

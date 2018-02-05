@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 
@@ -40,6 +41,8 @@ import { SortBlockComponent } from "./queryBlocks/sortBlock/sortBlock.component"
 
 import { ElasticModule } from './elastic/elastic.module';
 import { ElasticService } from './elastic/elastic.service';
+
+import { MatSelectModule } from '@angular/material';
 
 
 @NgModule({
@@ -84,8 +87,10 @@ import { ElasticService } from './elastic/elastic.service';
   ],
   imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		FormsModule,
-		ElasticModule
+		ElasticModule,
+		MatSelectModule
   ],
   providers: [ElasticService],
   bootstrap: [AppComponent]

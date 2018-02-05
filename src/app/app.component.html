@@ -35,3 +35,46 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+<!--
+
+GET /spotter_288_2017*/_search
+
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "supplier": "33"
+          }
+        },
+        {
+          "bool": {
+            "must": [
+              {
+                "span": {}
+              }
+            ]
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "statut": "5"
+          }
+        }
+      ],
+      "should": []
+    }
+  }
+}
+
+-->
