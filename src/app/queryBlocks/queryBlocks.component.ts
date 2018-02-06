@@ -289,7 +289,7 @@ export class QueryBlocksComponent implements OnInit, OnChanges {
 			});
 		}
 
-		// this.result.resultQuery.final = JSON.stringify(es_final, null, 2);
+		this.result.resultQuery.final = JSON.stringify(es_final, null, 2);
 		// try {
 		// 	this.editorHookHelp.setValue(self.result.resultQuery.final);
 		// } catch(e) {

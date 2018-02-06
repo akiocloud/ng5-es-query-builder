@@ -111,7 +111,9 @@ export class SortBlockComponent implements OnInit, OnChanges {
     }
     
     exeBuild() {
-        setTimeout(() => this.buildQuery(), 300);
+        setTimeout(() => {
+            this.buildQuery();
+        }, 300);
     }
 
     initSort() {
@@ -130,54 +132,59 @@ export class SortBlockComponent implements OnInit, OnChanges {
         this.exeBuild();
     }
 
-    sortFieldCallback(input: any) {
-        let obj = this.result.sort[input.external];
+    sortFieldCallback(sort: any) {
+        //let obj = this.result.sort[input.external];
         let geoFlag = false;
 
-        obj.selectedField = input.val;
-        obj.availableOptionalParams = [];
+        //obj.selectedField = input.val;
+        //obj.availableOptionalParams = [];
+        /*
+        sort.availableOptionalParams = [];
 
-        if (!obj.mode && obj.mode != '') {
-            obj.availableOptionalParams.push('mode');
+        if (!sort.mode && sort.mode != '') {
+            sort.availableOptionalParams.push('mode');
         }
-        if (!obj.missing && obj.missing != '') {
-            obj.availableOptionalParams.push('missing');
+        if (!sort.missing && sort.missing != '') {
+            sort.availableOptionalParams.push('missing');
         }
+        */
+
+        sort.availableOptionalParams = [ 'mode' , 'missing' ];
 
         this.result.resultQuery.availableFields.map(field => {
-            if (field.name === input.val) {
+            if (field.name === sort.selectedField) {
                 if (field.type === 'geo_point') {
-                    let index = obj.availableOptionalParams.indexOf('missing');
+                    let index = sort.availableOptionalParams.indexOf('missing');
                     if (index > -1) {
-                        obj.availableOptionalParams.splice(index, 1);
+                        sort.availableOptionalParams.splice(index, 1);
                     }
 
-                    if (obj.hasOwnProperty('missing')) {
-                        delete obj['missing'];
+                    if (sort.hasOwnProperty('missing')) {
+                        delete sort['missing'];
                     }
 
                     geoFlag = true;
-                    obj.modeList = ['min', 'max', 'avg', 'median'];
-                    obj['_geo_distance'] = {
+                    sort.modeList = ['min', 'max', 'avg', 'median'];
+                    sort['_geo_distance'] = {
                         'distance_type': 'sloppy_arc',
                         'lat': '',
                         'lon': '',
                         'unit': ''
                     }
                 } else {
-                    obj.modeList = ['min', 'max', 'sum', 'avg', 'median'];
+                    sort.modeList = ['min', 'max', 'sum', 'avg', 'median'];
                 }
             }
         });
 
         if (!geoFlag) {
-            delete obj['_geo_distance'];
+            delete sort['_geo_distance'];
         }
         this.exeBuild();
     }
 
     sortModeCallback(input: any) {
-        this.result.sort[input.external].mode = input.val;
+        //this.result.sort[input.external].mode = input.val;
         this.exeBuild();
     }
 
@@ -186,13 +193,15 @@ export class SortBlockComponent implements OnInit, OnChanges {
         this.exeBuild();
     }
 
-    sortOptionalCallback(input: any) {
-        let obj = this.result.sort[input.external];
-        let index = obj.availableOptionalParams.indexOf(input.val);
-        if (index > -1) {
-            obj.availableOptionalParams.splice(index, 1);
-        }
-        obj[input.val] = '';
+    sortOptionalCallback(sort:any,event:any) {
+        //let obj = this.result.sort[input.external];
+        //let index = obj.availableOptionalParams.indexOf(input.val);
+        //if (index > -1) {
+        //    obj.availableOptionalParams.splice(index, 1);
+        //}
+        //obj[input.val] = '';
+        sort[event.value] = '';
+        return;
     }
 
     setSortOrder(order, index) {
@@ -206,7 +215,7 @@ export class SortBlockComponent implements OnInit, OnChanges {
     }
 
     removeSortOptionalQuery(index: any, type: any) {
-        this.result.sort[index].availableOptionalParams.push(type);
+        //this.result.sort[index].availableOptionalParams.push(type);
         delete this.result.sort[index][type];
         this.exeBuild();
     }

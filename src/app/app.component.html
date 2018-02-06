@@ -3,7 +3,7 @@
         <h1> es query editor </h1>
     </div>
     <div class="row">
-        <div class="col-sm-6">1
+        <div class="col-sm-6">
             
             <query-blocks
                 *ngIf="mapping"
@@ -17,21 +17,23 @@
         </div>
         <div class="col-sm-6">
 
-            <h1> types </h1>
-            <pre> {{ types | json }} </pre>
-            
+            <h1> q </h1>
+            <pre> {{ result.resultQuery.final }} </pre>
+          
+            <!--
             <h1> selectedTypes </h1>
             <pre> {{ selectedTypes | json }} </pre>
             
             <h1> config </h1>
             <pre> {{ config | json }} </pre>
             
+            <h1> mapping </h1>
+            <pre> {{ mapping | json }} </pre>
+            -->
+            
             <h1> result </h1>
             <pre> {{ result | json }} </pre>
             
-            <h1> mapping </h1>
-            <pre> {{ mapping | json }} </pre>
-
         </div>
     </div>
 </div>

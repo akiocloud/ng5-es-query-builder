@@ -13,7 +13,23 @@
                     </a>
                 </div>
                 <div class="clearfix">
-                    <editable class="col-xs-4 pd-l0 sort-field-select-{{i}}" 
+                    
+                    <pre> sort.selectedField : {{ sort.selectedField | json }} </pre>
+
+                    <mat-form-field>
+                        <mat-select
+                            [(value)]="sort.selectedField"
+                            (change)="sortFieldCallback(sort)"><!--  -->
+                            
+                            <mat-option
+                                *ngFor="let field of allFields" 
+                                [value]="field">{{ field }}</mat-option>
+                            
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!--
+                    <editable class="col-xs-4 pd-l0 sort-field-select-{{i}}"
                         [editableField]="sort.selectedField"
                         [editPlaceholder]="'field'"
                         [editableInput]="'select'"
@@ -23,6 +39,7 @@
                         [passWithCallback]="i"
                         (callback)="sortFieldCallback($event)">
                     </editable>
+                    -->
 
                     <div class="col-xs-4">
                         <div class="toggle clearfix">
@@ -31,6 +48,18 @@
                         </div>
                     </div>
 
+                    <mat-form-field>
+                        <mat-select
+                            (change)="sortOptionalCallback(sort,$event)"><!--  -->
+                            
+                            <mat-option
+                                *ngFor="let optionalParam of sort.availableOptionalParams"
+                                [value]="optionalParam">{{ optionalParam }}</mat-option>
+                            
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <!--
                     <editable class="col-xs-4 pd-l0 sort-optional-select-{{i}}" 
                         [editableField]="''"
                         [editPlaceholder]="'select-optional-parameter'"
@@ -44,6 +73,7 @@
                         (callback)="sortOptionalCallback($event)"
                         (setDocSample)="setDocSampleEve($event)">
                     </editable>
+                    -->
                 </div>
                 
                 <div class="row m-0 mt-10 single_query clearfix" *ngIf="sort.mode || sort.mode == ''">
@@ -53,6 +83,22 @@
                         </a>
                     </div>
                     <div class="col-xs-4 pd-l0">
+
+                        <mat-form-field>
+                            <mat-select
+                                [(value)]="sort.mode"
+                                (change)="sortModeCallback()"><!--  -->
+                                
+                                <mat-option
+                                    *ngFor="let mode of sort.modeList"
+                                    [value]="mode">{{ mode }}</mat-option>
+                                
+                            </mat-select>
+                        </mat-form-field>
+
+                        
+                        <!--
+                        <h1>3</h1>
                         <editable class="sort-mode-select-{{i}}" 
                             [editableField]="sort.mode"
                             [editPlaceholder]="'mode'"
@@ -65,6 +111,7 @@
                             [passWithCallback]="i"
                             (callback)="sortModeCallback($event)">
                         </editable>
+                        -->
                     </div>
                 </div>
 
@@ -107,6 +154,7 @@
                             (keyup)="exeBuild();" />
                     </div>
                     <div class="col-xs-4 pd-l0 mt-10">
+                        <h1>4</h1>
                         <editable class="sort-distanceType-select-{{i}}" 
                             [editableField]="sort._geo_distance.distance_type"
                             [editPlaceholder]="'_geo_distance.distance_type'"
