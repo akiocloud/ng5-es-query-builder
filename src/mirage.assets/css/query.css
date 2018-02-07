@@ -255,10 +255,14 @@
       color: #fff; }
     .tabs a .fa {
       margin-right: 3px; }
+    /*
     .tabs a .fa-minus {
-      display: none; }
+      display: none; 
+    }
     .tabs a .fa-plus {
-      display: inline-block; }
+      display: inline-block; 
+    }
+    */
     .tabs a.selected {
       background-color: #666; }
       .tabs a.selected .fa-plus {

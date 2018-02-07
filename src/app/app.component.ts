@@ -22,9 +22,6 @@ export class AppComponent implements OnInit
 
   }
   
-  
-  
-  
   config = {
     // "url": "http://10.93.201.249:9200",
     "appname": "spotter_288_2017_12_en_1",
