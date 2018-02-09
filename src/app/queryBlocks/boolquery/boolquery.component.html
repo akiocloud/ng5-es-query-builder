@@ -10,16 +10,16 @@
 				<i class="fa fa-plus"></i> Sub Query
 			</button>
 			<div class="col-xs-6">
-				
+
 				<mat-form-field>
 					<mat-select
 						placeholder="Query" 
-						[(value)]="query.boolparam" 
+						[(value)]="query.boolparam"
 						(change)="exeBuild()">
 
 						<mat-option
 							*ngFor="let boolQuery of queryList.boolQuery; let i = index;" 
-							[value]="i">{{ boolQuery }}</mat-option><!--(onSelectionChange)="booleanSelectionChange()"-->
+							[value]="boolQuery">{{ boolQuery }}</mat-option><!--(onSelectionChange)="booleanSelectionChange()"-->
 					</mat-select>
 				</mat-form-field>
 				
@@ -114,9 +114,9 @@
 				[buildSubQuery]="buildSubQuery"
 				[createQuery]="createQuery"
 				[setQueryFormat]="setQueryFormat"
+
 				
-				
-				[boolQueryName]="queryList.boolQuery[query.boolparam]"
+				[boolQueryName]="query.boolparam"
 				[joiningQuery]="joiningQuery"
 				[joiningQueryParam]="joiningQueryParam"
 				(setDocSample)="setDocSampleEve($event);">

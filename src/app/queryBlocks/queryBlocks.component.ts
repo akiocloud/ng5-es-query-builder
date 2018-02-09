@@ -22,7 +22,7 @@ export class QueryBlocksComponent implements OnInit, OnChanges {
 			type: ''
 		},
 		bool: {
-			boolparam: 0,
+			boolparam: 'must',
 			parent_id: 0,
 			id: 0,
 			internal: [],
@@ -140,7 +140,8 @@ export class QueryBlocksComponent implements OnInit, OnChanges {
 						'bool': finalresult
 					};
 				} else {
-					if (self.queryList['boolQuery'][results[0]['boolparam']] === 'must') {
+					//if (self.queryList['boolQuery'][results[0]['boolparam']] === 'must') {
+					if ( results[0]['boolparam'] === 'must') {
 						es_final['query'] = finalresult;
 					} else {
 						es_final['query'] = {
@@ -161,7 +162,8 @@ export class QueryBlocksComponent implements OnInit, OnChanges {
 						var current_query = {
 							'bool': {}
 						};
-						var currentBool = self.queryList['boolQuery'][result1['boolparam']];
+						//var currentBool = self.queryList['boolQuery'][result1['boolparam']];
+						var currentBool = result1['boolparam'];
 						current_query['bool'][currentBool] = result1.availableQuery;
 						if (currentBool === 'should') {
 							current_query['bool']['minimum_should_match'] = result1.minimum_should_match;
@@ -177,7 +179,8 @@ export class QueryBlocksComponent implements OnInit, OnChanges {
 			});
 			results.forEach(function(result) {
 				if (result.parent_id === 0) {
-					var currentBool = self.queryList['boolQuery'][result['boolparam']];
+					//var currentBool = self.queryList['boolQuery'][result['boolparam']];
+					var currentBool = result['boolparam'];
 					if(self.joiningQuery && self.joiningQuery[self.joiningQueryParam] === 'nested') {
 						finalresult['nested'] = {
 							path: result.path,
