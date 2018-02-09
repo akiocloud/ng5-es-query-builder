@@ -267,7 +267,7 @@ export class SinglequeryComponent implements OnInit, OnChanges, AfterViewInit {
 				.filter(q => {
 					let isParentSpan = this.boolQueryName.indexOf("span") > -1;
 					let isChildSpan = q.indexOf("span") > -1;
-					return ! isParentSpan || isChildSpan;
+					return isParentSpan == isChildSpan;
 				});
 	}
 }
