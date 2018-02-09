@@ -62,7 +62,7 @@
 					(change)="querySelectionChange()">
 		
 					<mat-option
-						*ngFor="let query of queryList[query.analyzeTest][query.type];" 
+						*ngFor="let query of getAvailableQueries()" 
 						[value]="query">{{ query }}</mat-option>
 		
 				</mat-select>
