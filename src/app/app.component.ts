@@ -39,12 +39,12 @@ export class AppComponent implements OnInit
         {
           "name": "id",
           "type": "string",
-          // "index": null
+          "index": null
         },
         {
           "name": "name",
           "type": "string",
-          // "index": null
+           "index": "analyzed"
         }
       ]
       // "final": "{\n  \"query\": {\n    \"match_all\": {}\n  }\n}"
