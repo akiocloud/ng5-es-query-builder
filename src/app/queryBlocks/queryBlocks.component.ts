@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, EventEmitter, Input, Output } from "@angular/core";
 import { queryList } from "../shared/queryList";
+import { QueryParser } from "../shared/QueryParser";
 
 declare var $: any;
 
@@ -125,6 +126,31 @@ export class QueryBlocksComponent implements OnInit, OnChanges {
 
 	// builquery - this function handles everything to build the query
 	buildQuery() {
+
+		var results = this.result.resultQuery.result;
+		var queryParser = new QueryParser(results);
+		this.result.resultQuery.parsed = queryParser.parse();
+		return;
+		
+
+		/*
+		function buildQueryRecursive(parent_id,results){
+			for ( let i = 0 ; i < results.length ; i++ ) {
+				let result = results[i];
+				result.errors = [ "Something wrong with your query" ];
+				if ( result.internal ) {
+
+				}
+			}
+		}
+
+		
+		var results = this.result.resultQuery.result;
+		console.log( results );
+		buildQueryRecursive(0,results);
+		return;
+
+
 		var self = this;
 		var results = this.result.resultQuery.result;
 		var es_final = {};
@@ -306,6 +332,7 @@ export class QueryBlocksComponent implements OnInit, OnChanges {
 		} catch (e) {
 			console.log(e);
 		}
+		*/
 	}
 
 	buildInsideQuery(result) {
