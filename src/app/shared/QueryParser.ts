@@ -7,7 +7,7 @@ export class QueryParser
         this.definitions = definitions;
     }
 
-    public parse() 
+    public parse()
     {
         
         //reset existing errors before new parsing
@@ -17,8 +17,9 @@ export class QueryParser
         }
 
         var root = {id:0};
-        var query = this.parseChildDefinitions(root);
-        return query[0];
+        var queries = this.parseChildDefinitions(root);
+        var query = queries && queries.length ? queries[0] : null;
+        return query;
     }
 
     private getChildDefinitions(parent_id: number) 

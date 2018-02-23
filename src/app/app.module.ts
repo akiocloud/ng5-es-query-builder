@@ -42,7 +42,7 @@ import { SortBlockComponent } from "./queryBlocks/sortBlock/sortBlock.component"
 import { ElasticModule } from './elastic/elastic.module';
 import { ElasticService } from './elastic/elastic.service';
 
-import { MatSelectModule } from '@angular/material';
+import { MatSelectModule , MatButtonModule } from '@angular/material';
 
 
 @NgModule({
@@ -90,7 +90,8 @@ import { MatSelectModule } from '@angular/material';
 		BrowserAnimationsModule,
 		FormsModule,
 		ElasticModule,
-		MatSelectModule
+		MatSelectModule,
+		MatButtonModule
   ],
   providers: [ElasticService],
   bootstrap: [AppComponent]
