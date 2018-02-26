@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('spotter-query-editor-demo App', () => {
+describe('ng5-es-query-builder App', () => {
   let page: AppPage;
 
   beforeEach(() => {
