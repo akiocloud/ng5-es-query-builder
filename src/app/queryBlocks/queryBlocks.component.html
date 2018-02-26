@@ -55,8 +55,7 @@
 			-->
 		</div>
 		<form class="row m-0"
-		 *ngFor="let queryIn of result.resultQuery.result"
-		 >
+		 *ngFor="let queryIn of result.resultQuery.result">
 			<div *ngIf="queryIn.parent_id == 0">
 				<bool-query 
 					[mapping]="mapping"

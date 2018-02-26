@@ -1,49 +1,83 @@
 <div class="form-group single_query col-xs-12 bool_query" (mouseover)="show_hidden_btns($event);" (mouseout)="hide_hidden_btns($event);">
+
+	<!-- selected="true" color="warn" -->
+	<!--
+	<mat-chip-list>
+		<mat-chip *ngFor="let err of query.errors">
+			<i class="material-icons"> warning </i>
+			<span style="padding-left:6px;font-size:medium;"> {{ err }} </span>
+		</mat-chip>
+	</mat-chip-list>
+-->
+
+	<style>
+		div.warn {
+			background: purple;
+    		padding: 10px;
+		}
+		div.warn * {
+			vertical-align: middle;
+			color: white;
+		}
+	</style>
+
+	<div class="warn" *ngFor="let err of query.errors">
+		<i class="material-icons"> warning </i>
+		<span style="padding-left:6px;font-size:medium;"> {{ err }} </span>
+	</div>
+
+	<br>
+	
 	<div class="action-btn-group bool-btn-group">
 		<a href="javascript:void(0)" (click)="removeInQuery(query.id)" class="btn btn-grey delete-nested-query">
 			<i class="fa fa-times"></i>
 		</a>
 	</div>
 	<div class="row m-b15 nested-first">
-		<div class="col-xs-12 nested-container">
-			<button (click)="addSubQuery(query.id)" class="btn btn-default nested-query">
-				<i class="fa fa-plus"></i> Sub Query
-			</button>
-			<div class="col-xs-6">
 
+		<div class="col-xs-6">
+
+			<mat-form-field>
+				<mat-select
+					placeholder="Query"
+					[(value)]="query.boolparam"
+					(change)="exeBuild()">
+
+					<mat-option
+						*ngFor="let boolQuery of queryList.boolQuery; let i = index;" 
+						[value]="boolQuery">{{ boolQuery }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			
+		</div>
+
+		<div class="col-xs-6"><!--  -->
+			<div class="form-group form-element" *ngIf="query.boolparam == 'should'">
+				<input type="text" class="form-control" placeholder="Minimum should match" [(ngModel)] = "query.minimum_should_match"  (keyup)="exeBuild();" />
+			</div>
+			<div class="form-group form-element" *ngIf="query.boolparam == 'span_near'">
+				<input type="text" class="form-control" placeholder="Slop" [(ngModel)] = "query.slop"  (keyup)="exeBuild();" />
+			</div>
+			<div class="form-group form-element" *ngIf="query.boolparam == 'span_near'">
+				<!-- <input type="text" class="form-control" placeholder="In Order" [(ngModel)] = "query.in_order"  (keyup)="exeBuild();" /> -->
 				<mat-form-field>
 					<mat-select
-						placeholder="Query" 
-						[(value)]="query.boolparam"
+						placeholder="In Order"
+						[(value)]="query.in_order"
 						(change)="exeBuild()">
-
-						<mat-option
-							*ngFor="let boolQuery of queryList.boolQuery; let i = index;" 
-							[value]="boolQuery">{{ boolQuery }}</mat-option><!--(onSelectionChange)="booleanSelectionChange()"-->
+						<mat-option [value]="true"> True </mat-option>
+						<mat-option [value]="false"> False </mat-option>
+						<mat-option [value]=""> &nbsp; </mat-option>
 					</mat-select>
 				</mat-form-field>
-				
-				<!--
-				
-				<editable 
-					[editableField]="queryList.boolQuery[query.boolparam]" 
-					[editableModal]="query.boolparam" 
-					[editPlaceholder]="'bool'" 
-					[editableInput]="'select'" 
-					[selectOption]="queryList.boolQuery" 
-					(callback)="booleanChange($event)">
-				</editable>
-				
-				-->
-				
+
 			</div>
-			<div class="col-xs-6" *ngIf="queryList.boolQuery[query.boolparam] == 'should'">
-				<div class="form-group form-element">
-					<input type="text" class="form-control" placeholder="Minimum should match" [(ngModel)] = "query.minimum_should_match"  (keyup)="exeBuild();" />
-				</div>
-			</div>
+
 		</div>
+
 	</div>
+
+	<!--
 	<div class="row s-12" *ngIf="(joiningQuery && joiningQuery.length > 1)">
 		<div class="checkbox">
 			<input id="cb-1" type="checkbox" [(ngModel)]="showJoiningQuery" (change)="joiningQueryChange(0)" autocomplete="off">
@@ -95,6 +129,8 @@
 			</div>
 		</div>
 	</div>
+	-->
+
 	<div class="internvalQuery">
 		<form class="row m-0"
 		 *ngFor="let queryIn of query.internal, let internalIndex=index">
@@ -160,5 +196,10 @@
 				-->
 			</div>
 		</form>
+	</div>
+	<div>
+		<button (click)="addSubQuery(query.id)" class="btn btn-default nested-query">
+			<i class="fa fa-plus"></i> Sub Query
+		</button>
 	</div>
 </div>

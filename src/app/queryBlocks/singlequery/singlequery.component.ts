@@ -260,4 +260,14 @@ export class SinglequeryComponent implements OnInit, OnChanges, AfterViewInit {
 	setDocSampleEve(link) {
 		this.setDocSample.emit(link);
 	}
+
+	getAvailableQueries(){
+		return	this
+				.queryList[this.query.analyzeTest][this.query.type]
+				.filter(q => {
+					let isParentSpan = this.boolQueryName.indexOf("span") > -1;
+					let isChildSpan = q.indexOf("span") > -1;
+					return isParentSpan == isChildSpan;
+				});
+	}
 }
