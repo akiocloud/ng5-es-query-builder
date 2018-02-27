@@ -1,6 +1,6 @@
-<div class="row" *ngIf="selectedTypes.length > 0">
-	<div class="col">
-		<button mat-raised-button color="primary" (click)="addBoolQuery(0);">
+<div class="flex-grid">
+	<div class="flex-cell-100">
+		<button mat-raised-button color="primary" (click)="addCompoundQuery(0);">
 			<i class="fa fa-plus"></i> Query
 		</button>
 		<button mat-raised-button color="accent" (click)="toggleSortQuery();">
@@ -11,9 +11,10 @@
 	</div>
 </div>
 
-<div class="row" *ngFor="let queryIn of result.resultQuery.result">
-	<div class="col" *ngIf="queryIn.parent_id == 0">
-		<bool-query 
+<div class="flex-grid" *ngFor="let queryIn of result.resultQuery.result">
+	<div class="flex-cell-100" *ngIf="queryIn.parent_id == 0">
+
+		<compound-query 
 			[mapping]="mapping"
 			[types]="types"
 			[selectedTypes]="selectedTypes" 
@@ -22,25 +23,22 @@
 			[query]="queryIn" 
 			[queryList]="queryList"
 			[addQuery]="addQuery"
-			[addBoolQuery]="addBoolQuery"
+			[addCompoundQuery]="addCompoundQuery"
 			[removeQuery]="removeQuery"
 			[queryFormat]="queryFormat"
 			[buildQuery]="buildQuery"
 			[buildInsideQuery]="buildInsideQuery"
 			[buildSubQuery]="buildSubQuery"
 			[createQuery]="createQuery"
-			[setQueryFormat]="setQueryFormat"
-			[joiningQuery]="joiningQuery"
-			[joiningQueryParam]="joiningQueryParam"
-			(setDocSample)="setDocSampleEve($event);"
-			(setJoiningQuery)="setJoiningQueryEve($event);">
-		</bool-query>
+			[setQueryFormat]="setQueryFormat">
+		</compound-query>
+
 	</div>
 </div>
+	
+<div class="flex-grid" *ngIf="result.sort && result.sort.length">
+	<div class="flex-cell-100">
 
-
-<div class="row" *ngIf="result.sort && result.sort.length">
-	<div class="col">
 		<sort-block 
 			[mapping]="mapping"
 			[types]="types"
@@ -50,19 +48,15 @@
 			[query]="queryIn" 
 			[queryList]="queryList"
 			[addQuery]="addQuery"
-			[addBoolQuery]="addBoolQuery"
+			[addCompoundQuery]="addCompoundQuery"
 			[removeQuery]="removeQuery"
 			[queryFormat]="queryFormat"
 			[buildQuery]="buildQuery"
 			[buildInsideQuery]="buildInsideQuery"
 			[buildSubQuery]="buildSubQuery"
 			[createQuery]="createQuery"
-			[setQueryFormat]="setQueryFormat"
-			
-			
-			[joiningQuery]="joiningQuery"
-			[joiningQueryParam]="joiningQueryParam"
-			(setDocSample)="setDocSampleEve($event);">
+			[setQueryFormat]="setQueryFormat">
 		</sort-block>
+			
 	</div>
 </div>

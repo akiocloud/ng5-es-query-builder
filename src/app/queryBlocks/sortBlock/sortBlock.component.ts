@@ -1,11 +1,10 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
-declare var $: any;
 
 @Component({
     selector: 'sort-block',
     templateUrl: 'sortBlock.component.html',
     inputs: [
-        'config', 'query', 'queryList', 'addQuery', 'removeQuery', 'addBoolQuery', 
+        'config', 'query', 'queryList', 'addQuery', 'removeQuery', 'addCompoundQuery', 
         'queryFormat', 'buildQuery', 'buildInsideQuery', 'buildSubQuery', 'createQuery', 
         'setQueryFormat', 'editorHookHelp', 'setDocSample'
     ]   //  , 'urlShare'
@@ -15,7 +14,7 @@ export class SortBlockComponent implements OnInit, OnChanges {
     public config: Object;
     public queryList: any = this.queryList;
     public addQuery: any;
-    public addBoolQuery: any;
+    public addCompoundQuery: any;
     public removeQuery: any;
     public removeArray: any = [];
     public query: any = this.query;
@@ -90,9 +89,6 @@ export class SortBlockComponent implements OnInit, OnChanges {
     @Input() types: any;
     @Input() selectedTypes: any;
     @Input() result: any;
-    @Input() joiningQuery: any = [''];
-    @Input() joiningQueryParam: any;
-    @Output() setDocSample = new EventEmitter < any >();
     
     ngOnInit() {
         if (this.result.resultQuery.hasOwnProperty('availableFields')) {
@@ -188,20 +184,8 @@ export class SortBlockComponent implements OnInit, OnChanges {
         this.exeBuild();
     }
 
-    sortDistanceTypeCallback(input: any) {
-        this.result.sort[input.external]['_geo_distance']['distance_type'] = input.val;
+    sortDistanceTypeCallback() {
         this.exeBuild();
-    }
-
-    sortOptionalCallback(sort:any,event:any) {
-        //let obj = this.result.sort[input.external];
-        //let index = obj.availableOptionalParams.indexOf(input.val);
-        //if (index > -1) {
-        //    obj.availableOptionalParams.splice(index, 1);
-        //}
-        //obj[input.val] = '';
-        sort[event.value] = '';
-        return;
     }
 
     setSortOrder(order, index) {
@@ -218,19 +202,5 @@ export class SortBlockComponent implements OnInit, OnChanges {
         //this.result.sort[index].availableOptionalParams.push(type);
         delete this.result.sort[index][type];
         this.exeBuild();
-    }
-
-    show_hidden_btns(event: any) {
-        $('.bool_query').removeClass('show_hidden');
-        $(event.currentTarget).addClass('show_hidden');
-        event.stopPropagation();
-    }
-
-    hide_hidden_btns() {
-        $('.bool_query').removeClass('show_hidden');
-    }
-
-    setDocSampleEve(link) {
-        this.setDocSample.emit(link);
     }
 }

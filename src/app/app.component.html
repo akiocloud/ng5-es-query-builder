@@ -1,11 +1,11 @@
-<main role="main">
-  <div class="jumbotron">
-    <h1 class="display-4">ES Query Editor</h1>
-    <p class="lead">Elastic Search Query Editor</p>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col">      
+<div class="banner">
+  <h1>ES Query Editor</h1>
+  <p>Elastic Search Query Editor</p>
+</div>
+
+<div class="flex-grid">
+    <div class="flex-cell-50">
+        
         <query-blocks
             *ngIf="mapping"
             [types]="types"
@@ -14,10 +14,12 @@
             [mapping]="mapping"
             [result]="result">
         </query-blocks>
-      </div>
-      <div class="col">
-        <pre *ngIf="result.resultQuery.parsed"> {{ result.resultQuery.parsed | json }} </pre>
-      </div>
+      
     </div>
-  </div>
-</main>
+    <div class="flex-cell-50">
+
+        <pre *ngIf="result.resultQuery.parsed"> {{ result.resultQuery.parsed | json }} </pre>
+      
+    </div>
+</div>
+

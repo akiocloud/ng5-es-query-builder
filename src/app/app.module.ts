@@ -5,11 +5,9 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { QueryBlocksComponent } from "./queryBlocks/queryBlocks.component";
-import { BoolqueryComponent } from "./queryBlocks/boolquery/boolquery.component";
-import { TypesComponent } from "./queryBlocks/types/types.component";
+import { CompoundQueryComponent } from "./queryBlocks/compoundQuery/compoundQuery.component";
+
 import { SinglequeryComponent } from "./queryBlocks/singlequery/singlequery.component";
-import { EditableComponent } from './queryBlocks/editable/editable.component';
-import { select2Component } from './queryBlocks/select2/select2.component';
 import { MatchQuery } from './queryBlocks/singlequery/queries/match.query';
 import { Match_phraseQuery } from './queryBlocks/singlequery/queries/match_phrase.query';
 import { Match_phase_prefixQuery } from './queryBlocks/singlequery/queries/match_phase_prefix.query';
@@ -49,13 +47,9 @@ import { MatSelectModule , MatButtonModule } from '@angular/material';
   declarations: [
     AppComponent,
   	QueryBlocksComponent, 
-  	BoolqueryComponent,
-  	TypesComponent,
+  	CompoundQueryComponent,
     SortBlockComponent,
   	SinglequeryComponent, 
-  	EditableComponent,
-  	select2Component,
-  	EditableComponent,
   	SinglequeryComponent,
   	MatchQuery,
   	Match_phraseQuery,

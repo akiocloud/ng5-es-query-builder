@@ -1,5 +1,7 @@
-
-<div class="form-group single_query internal-query col-xs-12 query-{{queryIndex}}-{{internalIndex}}" [ngClass]="{query_complete: query.field !== '' && query.query !== ''}">
+<div 
+	class="form-group single_query internal-query col-xs-12 query-{{queryIndex}}-{{internalIndex}}" 
+	[ngClass]="{query_complete: query.field !== '' && query.query !== ''}">
+	
 	<div class="action-btn-group">
 		<a href="javascript:void(0)" (click)="removeQuery()" class="btn btn-grey add_condition_delete">
 			<i class="fa fa-times"></i>
@@ -7,10 +9,6 @@
 	</div>
 	<!-- field part start -->
 
-
-	
-	<!--			
-	-->
 	<div>
 		<mat-form-field>
 			<mat-select
@@ -25,30 +23,10 @@
 			</mat-select>
 		</mat-form-field>
 	</div>
-	
-	<!--
-	<editable
-		class="col-xs-3 pd-l0 field-select" 
-		[editableField]="query.selectedField" 
-		[editPlaceholder]="'field'" 
-		[editableInput]="'selectField'" 
-		[result]="result" 
-		[selectOption]="result.resultQuery.availableFields" 
-		[querySelector]="querySelector"  
-		[selector]="selector.field" 
-		(callback)="analyzeTest($event)"></editable>
-	-->
-	
-	<!--
-	<pre> {{ result.resultQuery.availableFields | json }} </pre>
-	<pre> {{ query.selectedField | json }} </pre>
-	<pre> {{ result | json }} </pre>
-	<pre> {{ querySelector | json }} </pre>
-	<pre> {{ selector.field | json }} </pre>
-	-->
 		
 	<!-- field part end -->
 	<!-- query part start -->
+
 	<div class="?col-xs-3 ?pd-l0"
 		*ngIf="query.selectedField && query.analyzeTest != '' && (queryList.allowedDataTypes.indexOf(query.field.type) > -1)">
 
@@ -68,31 +46,6 @@
 				</mat-select>
 			</mat-form-field>
 		</div>
-		<!--
-
-			<pre> {{ query.analyzeTest | json }} </pre>
-			<pre> {{ query.type | json }} </pre>
-			<pre> {{ queryList | json }} </pre>
-		
-
-			
-		<pre> {{ querySelector | json }} </pre>
-		<pre> {{ selector.query | json }} </pre>
-		<pre> {{ informationList | json }} </pre>
-
-		<editable class="query-select" 
-			[editableField]="query.selectedQuery" 
-			[editPlaceholder]="'query'" 
-			[editableInput]="'select'" 
-			[result]="result" 
-			[selectOption]="queryList[query.analyzeTest][query.type]" 
-			[querySelector]="querySelector"  
-			[selector]="selector.query" 
-			[informationList]="informationList"  
-			(callback)="queryCallback($event)" 
-			(setDocSample)="setDocSampleEve($event);"
-			[showInfoFlag]="true"></editable>
-		-->
 
 	</div>
 	<!-- query part end -->

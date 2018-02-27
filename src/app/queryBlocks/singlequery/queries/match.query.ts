@@ -108,7 +108,6 @@ export class MatchQuery implements OnInit, OnChanges {
 				}
 			}
 		} catch (e) {}
-		this.filterOptions();
 		this.getFormat();
 	}
 
@@ -162,39 +161,19 @@ export class MatchQuery implements OnInit, OnChanges {
 		return queryFormat;
 	}
 
-	// Now below methods are related to options parameter, 
-	//so use it as it is in new query if query contains optional parametes
-	// while selecting option
 	selectOption() {
-		//input.selector.parents('.editable-pack').removeClass('on');
-		//this.optionRows[input.external].name = input.val;//the mat select does this already
-		//this.filterOptions();
 		setTimeout(function() {
 			this.getFormat();
 		}.bind(this), 300);
 	}
-	// Update the option list because duplicate option is not allowed
-	filterOptions() {
-		this.options = this.default_options.filter(function(opt) {
-			var flag = true;
-			this.optionRows.forEach(function(row) {
-				if(row.name === opt) {
-					flag = false;
-				}
-			});
-			return flag;
-		}.bind(this));
-	}
 	// while user click on add option button it will add new option row and update the available options
 	addOption() {
 		var singleOption = JSON.parse(JSON.stringify(this.singleOption));
-		this.filterOptions();
 		this.optionRows.push(singleOption);
 	}
 	// while user click on remove option button it will remove the row and update the available options
 	removeOption(index: Number) {
 		this.optionRows.splice(index, 1);
-		this.filterOptions();
 		this.getFormat();
 	}
 

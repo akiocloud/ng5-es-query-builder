@@ -1,22 +1,15 @@
-
-<span class="col-xs-6 pd-10">
-    <div class="form-group form-element query-primary-input">
-        <span class="input_with_option">
-            <input 
-                type="text" 
-                class="form-control col-xs-12"
-                [(ngModel)]="inputs.input.value"
-                placeholder="{{inputs.input.placeholder}}"
-                (keyup)="getFormat();" 
-            />
-        </span>
+<span class="col-xs-6 pd-0">
+    <div class="form-group form-element">
+        <input type="text" class="form-control col-xs-12"
+            [(ngModel)]="inputs.lt.value"
+             placeholder="{{inputs.lt.placeholder}}"
+             (keyup)="getFormat();" />
     </div>
-    <button (click)="addOption();" class="btn btn-info btn-xs add-option"> <i class="fa fa-plus"></i> </button>
+<button (click)="addOption();" class="btn btn-info btn-xs add-option"> <i class="fa fa-plus"></i> </button>
 </span>
 <div class="col-xs-12 option-container" *ngIf="optionRows.length">
     <div class="col-xs-12 single-option" *ngFor="let singleOption of optionRows, let i=index">
         <div class="col-xs-6 pd-l0">
-
             <mat-form-field>
                 <mat-select
                     [(value)]="singleOption.name"
@@ -28,7 +21,6 @@
                     
                 </mat-select>
             </mat-form-field>
-
         </div>
         <div class="col-xs-6 pd-0">
             <div class="form-group form-element">

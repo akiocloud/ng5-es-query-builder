@@ -61,7 +61,7 @@ export var queryList = {
 			'geohash_cell'
 		]
 	},
-	boolQuery: [
+	compoundQuery: [
 		'must',
 		'must_not',
 		'should',

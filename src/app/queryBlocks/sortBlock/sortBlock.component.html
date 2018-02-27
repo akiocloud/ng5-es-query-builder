@@ -1,4 +1,4 @@
-<div class="form-group single_query col-xs-12 bool_query" (mouseover)="show_hidden_btns($event);" (mouseout)="hide_hidden_btns($event);">
+<div class="form-group single_query col-xs-12 bool_query">
     <div class="action-btn-group bool-btn-group">
         <a href="javascript:void(0)" class="btn btn-grey delete-nested-query" (click)="deleteSort();">
             <i class="fa fa-times"></i>
@@ -14,8 +14,6 @@
                 </div>
                 <div class="clearfix">
                     
-                    <pre> sort.selectedField : {{ sort.selectedField | json }} </pre>
-
                     <mat-form-field>
                         <mat-select
                             [(value)]="sort.selectedField"
@@ -27,20 +25,6 @@
                             
                         </mat-select>
                     </mat-form-field>
-
-                    <!--
-                    <editable class="col-xs-4 pd-l0 sort-field-select-{{i}}"
-                        [editableField]="sort.selectedField"
-                        [editPlaceholder]="'field'"
-                        [editableInput]="'select'"
-                        [result]="result"
-                        [selectOption]="allFields"
-                        [selector]="'sort-field-select'"
-                        [passWithCallback]="i"
-                        (callback)="sortFieldCallback($event)">
-                    </editable>
-                    -->
-
                     <div class="col-xs-4">
                         <div class="toggle clearfix">
                             <a [ngClass]="{'selected': sort.order === 'asc'}" (click)="setSortOrder('asc', i)">Asc</a>
@@ -49,8 +33,7 @@
                     </div>
 
                     <mat-form-field>
-                        <mat-select
-                            (change)="sortOptionalCallback(sort,$event)"><!--  -->
+                        <mat-select>
                             
                             <mat-option
                                 *ngFor="let optionalParam of sort.availableOptionalParams"
@@ -58,22 +41,6 @@
                             
                         </mat-select>
                     </mat-form-field>
-                    
-                    <!--
-                    <editable class="col-xs-4 pd-l0 sort-optional-select-{{i}}" 
-                        [editableField]="''"
-                        [editPlaceholder]="'select-optional-parameter'"
-                        [editableInput]="'select'"
-                        [result]="result"
-                        [selectOption]="sort.availableOptionalParams"
-                        [selector]="'sort-optional-select'"
-                        [informationList]="optionalParamsInformation"
-                        [showInfoFlag]="true"
-                        [passWithCallback]="i"
-                        (callback)="sortOptionalCallback($event)"
-                        (setDocSample)="setDocSampleEve($event)">
-                    </editable>
-                    -->
                 </div>
                 
                 <div class="row m-0 mt-10 single_query clearfix" *ngIf="sort.mode || sort.mode == ''">
@@ -95,23 +62,6 @@
                                 
                             </mat-select>
                         </mat-form-field>
-
-                        
-                        <!--
-                        <h1>3</h1>
-                        <editable class="sort-mode-select-{{i}}" 
-                            [editableField]="sort.mode"
-                            [editPlaceholder]="'mode'"
-                            [editableInput]="'select'"
-                            [result]="result"
-                            [selectOption]="sort.modeList"
-                            [selector]="'sort-mode-select'"
-                            [informationList]="informationList"
-                            [showInfoFlag]="true"
-                            [passWithCallback]="i"
-                            (callback)="sortModeCallback($event)">
-                        </editable>
-                        -->
                     </div>
                 </div>
 
@@ -154,19 +104,21 @@
                             (keyup)="exeBuild();" />
                     </div>
                     <div class="col-xs-4 pd-l0 mt-10">
-                        <h1>4</h1>
-                        <editable class="sort-distanceType-select-{{i}}" 
-                            [editableField]="sort._geo_distance.distance_type"
-                            [editPlaceholder]="'_geo_distance.distance_type'"
-                            [editableInput]="'select'"
-                            [result]="result"
-                            [selectOption]="distanceTypeList"
-                            [selector]="'sort-distanceType-select'"
-                            [informationList]="distanceTypeInformation"
-                            [showInfoFlag]="true"
-                            [passWithCallback]="i"
-                            (callback)="sortDistanceTypeCallback($event)">
-                        </editable>
+                        
+
+
+                        <mat-form-field>
+                            <mat-select
+                                [(value)]="sort._geo_distance.distance_type"
+                                (change)="sortDistanceTypeCallback()"><!--  -->
+                                
+                                <mat-option
+                                    *ngFor="let distanceType of distanceTypeList"
+                                    [value]="distanceType">{{ distanceType }}</mat-option>
+                                
+                            </mat-select>
+                        </mat-form-field>
+
                     </div>
                 </div>
             </div>
