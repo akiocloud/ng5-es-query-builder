@@ -31,10 +31,11 @@ declare var $: any;
 @Component({
 	selector: 'single-query',
 	templateUrl: 'singlequery.component.html',
+	styleUrls:[ 'singlequery.component.css' ],
 	inputs: [
 		'config', 'queryList', 'addQuery', 'internal', 'internalIndex', 'queryIndex', 'buildQuery', 'buildInsideQuery', 
-		'buildSubQuery', 'createQuery', 'setQueryFormat', 'setDocLink', 'setDocSample'
-	]	//	, 'urlShare', 'editorHookHelp'
+		'buildSubQuery', 'createQuery', 'setQueryFormat'
+	]
 })
 
 export class SinglequeryComponent implements OnInit, OnChanges, AfterViewInit {
@@ -58,7 +59,6 @@ export class SinglequeryComponent implements OnInit, OnChanges, AfterViewInit {
 	@Input() result: any;
 	@Input() query: any;
 	@Input() compoundQueryName: string;
-	@Output() setDocSample = new EventEmitter < any >();
 	
 	// @ViewChild(MatchQuery) private matchQuery: MatchQuery;
 	// @ViewChild(Match_phraseQuery) private match_phraseQuery: Match_phraseQuery;

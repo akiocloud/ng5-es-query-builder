@@ -1,83 +1,78 @@
-<style>
-	div.warn 
-	{
-		background: purple;
-		padding: 10px;
-	}
-	div.warn * 
-	{
-		vertical-align: middle;
-		color: white;
-	}
-</style>
-		
 
-<!--
-<div>
-</div>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
--->
 
-<div class="form-group single_query col-xs-12 bool_query">
 
-	<div class="warn" *ngFor="let err of query.errors">
-		<i class="material-icons"> warning </i>
-		<span style="padding-left:6px;font-size:medium;"> {{ err }} </span>
+<div class="compound-query">
+	<div class="compound-query-title">
+		<mat-icon  (click)="removeInQuery(query.id)">clear</mat-icon>
+		<div>Compound Query</div>
 	</div>
-		
-	
-	<div class="action-btn-group bool-btn-group">
-		<a href="javascript:void(0)" (click)="removeInQuery(query.id)" class="btn btn-grey delete-nested-query">
-			<i class="fa fa-times"></i>
-		</a>
-	</div>
-	<div class="row m-b15 nested-first">
-
-		<div class="col-xs-6">
-
-			<mat-form-field>
-				<mat-select
-					placeholder="Query"
-					[(value)]="query.boolparam"
-					(change)="exeBuild()">
-
-					<mat-option
-						*ngFor="let compoundQuery of queryList.compoundQuery; let i = index;" 
-						[value]="compoundQuery">{{ compoundQuery }}</mat-option>
-				</mat-select>
-			</mat-form-field>
-			
+	<div *ngFor="let error of query.errors">
+		<div class="warn">
+			<i class="material-icons">info_outline</i>
+			<span> {{ error }} </span>
 		</div>
+	</div>
+	<div class="compound-query-header">
+		<div class="flex-grid">
+			<div class="flex-cell-40">
 
-		<div class="col-xs-6"><!--  -->
-			<div class="form-group form-element" *ngIf="query.boolparam == 'should'">
-				<input type="text" class="form-control" placeholder="Minimum should match" [(ngModel)] = "query.minimum_should_match"  (keyup)="exeBuild();" />
-			</div>
-			<div class="form-group form-element" *ngIf="query.boolparam == 'span_near'">
-				<input type="text" class="form-control" placeholder="Slop" [(ngModel)] = "query.slop"  (keyup)="exeBuild();" />
-			</div>
-			<div class="form-group form-element" *ngIf="query.boolparam == 'span_near'">
-				<!-- <input type="text" class="form-control" placeholder="In Order" [(ngModel)] = "query.in_order"  (keyup)="exeBuild();" /> -->
+				<br>
+
+				<!-- query type -->
+
 				<mat-form-field>
 					<mat-select
-						placeholder="In Order"
-						[(value)]="query.in_order"
+						placeholder="Query" 
+						[(value)]="query.boolparam"
 						(change)="exeBuild()">
-						<mat-option [value]="true"> True </mat-option>
-						<mat-option [value]="false"> False </mat-option>
-						<mat-option [value]=""> &nbsp; </mat-option>
+						<mat-option
+							*ngFor="let compoundQuery of queryList.compoundQuery; let i = index;" 
+							[value]="compoundQuery">{{ compoundQuery }}</mat-option>
 					</mat-select>
 				</mat-form-field>
 
 			</div>
+			<div class="flex-cell-10"></div>
+			<div class="flex-cell-40">
 
+				<br>
+
+				<!-- query type specific options -->
+
+				<div *ngIf="query.boolparam == 'span_near'">
+					<mat-form-field>
+						<input matInput placeholder="Slop" [(ngModel)] = "query.slop"  (keyup)="exeBuild();">
+					</mat-form-field>
+				</div>
+				
+				<div *ngIf="query.boolparam == 'span_near'">
+					<mat-form-field>
+						<mat-select
+							placeholder="In Order"
+							[(value)]="query.in_order"
+							(change)="exeBuild()">
+							<mat-option [value]="true"> True </mat-option>
+							<mat-option [value]="false"> False </mat-option>
+							<mat-option [value]=""> &nbsp; </mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+
+
+				<div *ngIf="query.boolparam == 'should'">
+					<mat-form-field>
+						<input matInput placeholder="Minimum should match" [(ngModel)] = "query.minimum_should_match" (keyup)="exeBuild();">
+					</mat-form-field>
+				</div>
+				
+			</div>
 		</div>
-
 	</div>
+	<div class="compound-query-body">
 
-	<div class="internvalQuery">
-		<form class="row m-0"
-		 *ngFor="let queryIn of query.internal, let internalIndex=index">
+		<!-- internal queries -->
+
+		<div *ngFor="let queryIn of query.internal, let internalIndex=index">
 			<single-query 
 				[mapping]="mapping"
 				[types]="types"
@@ -94,19 +89,20 @@
 				[buildSubQuery]="buildSubQuery"
 				[createQuery]="createQuery"
 				[setQueryFormat]="setQueryFormat"
-				[compoundQueryName]="query.boolparam"
-				(setDocSample)="setDocSampleEve($event);">
+				[compoundQueryName]="query.boolparam">
 			</single-query>
-		</form>
-	</div>
-	<div class="col-xs-12 add_condition_row">
-		<button mat-raised-button (click)="addQuery(query)">
-			<i class="fa fa-plus"></i> Conditions
+		</div>
+
+		<button mat-raised-button (click)="addQuery(query)" class="compound-query-add-condition">
+			<i class="material-icons">add</i> Conditions
 		</button>
-	</div>
-	<div class="subQuery col-xs-12">
-		<form class="row m-0" *ngFor="let queryIn of result.resultQuery.result">
+
+		<!-- child queries -->
+
+
+		<div *ngFor="let queryIn of result.resultQuery.result">
 			<div *ngIf="queryIn.parent_id != 0 && queryIn.parent_id == query.id">
+
 				<compound-query 
 					[mapping]="mapping"
 					[types]="types"
@@ -125,14 +121,17 @@
 					[createQuery]="createQuery"
 					[setQueryFormat]="setQueryFormat" >
 				</compound-query>
+				
 			</div>
-		</form>
+		</div>
+				
 	</div>
-	<div>
+	<div class="compound-query-footer">
 
-		<button mat-raised-button (click)="addSubQuery(query.id)">
-			<i class="fa fa-plus"></i> Sub Query
+		<button mat-raised-button (click)="addSubQuery(query.id)" class="compound-query-add-sub-query">
+			<i class="material-icons">add</i> Sub Query
 		</button>
 		
 	</div>
+
 </div>

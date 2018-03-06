@@ -1,0 +1,28 @@
+.single-query-component
+{
+    background: rgba(255,64,128,0.2);
+    padding: 0 0px;
+    margin-bottom:5px;
+}
+
+.single-query-component.query_complete
+{
+    background: none;
+}
+
+.actions
+{
+    text-align: right;
+}
+
+.actions mat-icon
+{
+    cursor: pointer;
+    margin: 10px 0;
+    opacity: 0.4;
+}
+
+.actions mat-icon:hover
+{
+    opacity: 0.8;
+}

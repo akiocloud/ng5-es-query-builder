@@ -6,8 +6,8 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angu
     inputs: [
         'config', 'query', 'queryList', 'addQuery', 'removeQuery', 'addCompoundQuery', 
         'queryFormat', 'buildQuery', 'buildInsideQuery', 'buildSubQuery', 'createQuery', 
-        'setQueryFormat', 'editorHookHelp', 'setDocSample'
-    ]   //  , 'urlShare'
+        'setQueryFormat'
+    ]
 })
 
 export class SortBlockComponent implements OnInit, OnChanges {

@@ -7,7 +7,8 @@ declare var $: any;
 @Component({
 	selector: 'query-blocks',
 	templateUrl: 'queryBlocks.component.html',
-	inputs: ['detectChange', 'editorHookHelp', 'saveQuery', 'setProp', 'setDocSample']
+	styleUrls: ['queryBlocks.component.css'],
+	inputs: ['detectChange', 'saveQuery', 'setProp']
 })
 
 export class QueryBlocksComponent implements OnInit {

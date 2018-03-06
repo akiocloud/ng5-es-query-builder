@@ -162,6 +162,14 @@ export class QueryParser
 
         if ( errors.length ) 
         {
+            /*
+             * some more dummy errors to
+             * help testing the layout
+             */
+            // errors.push("gabba gabba hey");
+            // errors.push("one of us ! one of us !");
+            // errors.push("All your base are belong to us");
+
             for ( let definition of childDefinitions ) 
             {
                 definition.errors = errors;

@@ -1,20 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
-/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-body {
-  margin:0;
-  padding:0;
+$defaultSpace : 2px;
+
+body
+{
+  margin : 0;
+  padding : 0;
+  font-family : sans-serif;
 }
 
-.flex-grid {
-  margin:5px;
-  display: flex;
-  flex-wrap: wrap;
+.flex-grid
+{
+  margin : 0;
+  padding : 0;
+  display : flex;
+  flex-wrap : wrap;
+  // display:block;
+  // font-size:0;
 }
 
-@for $i from 1 through 100 {
-  .flex-cell-#{$i} {
-    flex:$i;
-    flex-basis: percentage($i/100);
+@for $i from 1 through 100
+{
+  .flex-cell-#{$i}
+  {
+    // vertical-align: top;
+    // font-size:14px;
+    margin:0;
+    //margin-left : floor(-$i/50) + 0px;
+    //margin-right : floor(-$i/50) + 0px;
+    margin-bottom : $defaultSpace;
+    padding : 0;
+    //width : percentage($i/100);
+    //display : inline-block;
+    flex : $i;
+    flex-basis : percentage($i/100);
   }
+}
+
+.flex-gutter
+{
+  margin : $defaultSpace;
+  padding : $defaultSpace;
 }

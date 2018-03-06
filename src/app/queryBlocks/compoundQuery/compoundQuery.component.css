@@ -1,0 +1,73 @@
+
+.compound-query
+{
+    border-radius: 2px;
+    margin : 5px 0;
+    background: rgba(128,128,128,0.1);
+}
+.compound-query:hover 
+{
+    background: rgba(128,128,128,0.2);
+}
+
+.compound-query-title
+{
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding : 6px;
+    background : #3f51b5;
+    color : white;font-weight:bold;
+    font-size: 14px;
+}
+
+.compound-query-title > div
+{
+    padding : 5px;
+}
+
+.compound-query-title mat-icon
+{
+    float : right;
+    cursor : pointer;
+}
+
+.compound-query-title mat-icon:hover
+{
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+}
+
+.compound-query-header,
+.compound-query-footer
+{
+    background : rgba(128,128,128,0.1);
+    padding : 4px 8px;
+}
+
+.compound-query-body
+{
+    padding : 4px 8px;
+    padding-left : 22px;
+}
+
+.compound-query-add-sub-query,
+.compound-query-add-condition
+{
+    margin : 4px 0;
+}
+
+div.warn
+{
+    background: #ff4081;
+    padding: 4px 6px;
+}
+div.warn *
+{
+    font-size: 15px;
+    color: white;
+}
+div.warn i
+{
+    position: relative;
+    top: 2px;
+}

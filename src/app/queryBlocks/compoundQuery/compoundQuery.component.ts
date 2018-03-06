@@ -3,11 +3,12 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angu
 @Component({
 	selector: 'compound-query',
 	templateUrl: 'compoundQuery.component.html',
+	styleUrls : [ 'compoundQuery.component.css' ],
 	inputs: [
 		'config', 'query', 'queryList', 'addQuery', 'removeQuery', 'addCompoundQuery', 
 		'queryFormat', 'buildQuery', 'buildInsideQuery', 'buildSubQuery', 'createQuery', 
-		'setQueryFormat', 'setDocSample']
-})	//	, 'editorHookHelp', 'urlShare'
+		'setQueryFormat']
+})
 
 export class CompoundQueryComponent implements OnInit, OnChanges {
 
