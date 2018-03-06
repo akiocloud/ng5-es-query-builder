@@ -133,8 +133,6 @@ export class CommonQuery implements OnInit, OnChanges {
 		return queryFormat;
 	}
 	selectOption(input: any) {
-		input.selector.parents('.editable-pack').removeClass('on');
-		this.optionRows[input.external].name = input.val;
 		setTimeout(function() {
 			this.getFormat();
 		}.bind(this), 300);

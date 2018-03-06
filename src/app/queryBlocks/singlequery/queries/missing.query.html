@@ -1,30 +1,74 @@
-<span class="col-xs-6 pd-10">
-    <button (click)="addOption();" class="btn btn-info btn-xs add-option"> <i class="fa fa-plus"></i> </button>
-</span>
-<div class="col-xs-12 option-container" *ngIf="optionRows.length">
-    <div class="col-xs-12 single-option" *ngFor="let singleOption of optionRows, let i=index">
-        <div class="col-xs-6 pd-l0">
+<style>
+    .missing-query 
+    {
+        margin-left:20px;
+    }
+    .actions
+    {
+        text-align: right;
+    }
+    
+    .actions mat-icon
+    {
+        cursor: pointer;
+        --margin: 10px 0;
+        opacity: 0.4;
+    }
+    
+    .actions mat-icon:hover
+    {
+        opacity: 0.8;
+    }
 
-            <mat-form-field>
-                <mat-select
-                    [(value)]="singleOption.name"
-                    (change)="selectOption()">
-                    
-                    <mat-option
-                        *ngFor="let option of default_options" 
-                        [value]="option">{{ option }}</mat-option>
-                    
-                </mat-select>
-            </mat-form-field>
+    .option
+    {
+        opacity: 0.4;
+    }
 
+    .option:hover
+    {
+        opacity: 0.8;
+    }
+</style>
+<div class="missing-query gutter">
+    <div class="flex-grid">
+        <div class="flex-cell-90">
         </div>
-        <div class="col-xs-6 pd-0">
-            <div class="form-group form-element">
-                <input class="form-control col-xs-12 pd-0" type="text" [(ngModel)]="singleOption.value" placeholder="value"  (keyup)="getFormat();"/>
+        <div class="flex-cell-10 actions">
+            <mat-icon (click)="addOption()">settings</mat-icon>
+        </div>
+    
+        <div class="flex-cell-100" *ngIf="optionRows.length">
+            <div class="flex-grid option" *ngFor="let singleOption of optionRows, let i=index">
+                <div class="flex-cell-45">
+                    <mat-form-field>
+                        <mat-select
+                            [(value)]="singleOption.name"
+                            (change)="selectOption()">
+                            
+                            <mat-option
+                                *ngFor="let option of default_options"
+                                [value]="option">{{ option }}</mat-option>
+                            
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="flex-cell-45">
+        
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            placeholder="value"
+                            [(ngModel)]="singleOption.value"
+                            (keyup)="getFormat();"
+                        />
+                    </mat-form-field>
+        
+                </div>
+                <div class="flex-cell-10 actions">
+                    <mat-icon (click)="removeOption(i)">clear</mat-icon>
+                </div>
             </div>
         </div>
-        <button (click)="removeOption(i)" class="btn btn-grey delete-option btn-xs">
-            <i class="fa fa-times"></i>
-        </button>
     </div>
 </div>

@@ -2,14 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angu
 
 @Component({
 	selector: 'ids-query',
-	template: 	`<span class="col-xs-6 pd-10">
-					<div class="form-group form-element">
-						<input type="text" class="form-control col-xs-12"
-							[(ngModel)]="inputs.input.value"
-						 	placeholder="{{inputs.input.placeholder}}"
-						 	(keyup)="getFormat();" />
-					</div>
-				</span>`,
+	templateUrl: 'ids.query.html',
 	inputs: ['getQueryFormat', 'querySelector']
 })
 

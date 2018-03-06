@@ -2,14 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angu
 
 @Component({
 	selector: 'terms-query',
-	template: 	`<span class="col-xs-6 pd-0">
-					<div class="form-group form-element">
-						<input type="text" class="form-control col-xs-12"
-							[(ngModel)]="inputs.input.value"
-						 	placeholder="{{inputs.input.placeholder}}"
-						 	(keyup)="getFormat();" />
-					</div>
-				</span>`,
+	templateUrl : 'terms-query.html',
 	inputs: ['getQueryFormat', 'querySelector']
 })
 

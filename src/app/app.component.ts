@@ -33,12 +33,17 @@ export class AppComponent implements OnInit
       "availableFields": [
         {
           "name": "id",
-          "type": "string",
+          "type": "numeric",
           "index": null
         },
         {
           "name": "name",
           "type": "string",
+          "index": "analyzed"
+        },
+        {
+          "name": "location",
+          "type": "geo_point",
           "index": "analyzed"
         }
       ]

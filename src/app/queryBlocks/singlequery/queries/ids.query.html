@@ -1,0 +1,8 @@
+<mat-form-field>
+    <input 
+        matInput 
+        [(ngModel)]="inputs.input.value"
+         placeholder="{{inputs.input.placeholder}}"
+        (keyup)="getFormat();"
+    />
+</mat-form-field>
