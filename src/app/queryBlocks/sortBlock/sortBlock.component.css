@@ -1,0 +1,65 @@
+
+.sort-block
+{
+    border-radius: 2px;
+    margin : 5px 0;
+    background: rgba(128,128,128,0.1);
+}
+.sort-block:hover 
+{
+    background: rgba(128,128,128,0.2);
+}
+
+.sort-block-title
+{
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding : 6px;
+    background : #ff4081;
+    color : white;font-weight:bold;
+    font-size: 14px;
+}
+
+.sort-block-title > div
+{
+    padding : 5px;
+}
+
+.sort-block-title mat-icon
+{
+    float : right;
+    cursor : pointer;
+}
+
+.sort-block-title mat-icon:hover
+{
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+}
+
+.sort-block-field
+{
+    padding: 10px 5px 0px 5px;
+    background: rgba(128,128,128,0.1);
+}
+
+.sort-block-field:hover 
+{
+    background: rgba(128,128,128,0.2);
+}
+
+.sort-block-field .action
+{
+    text-align: right
+}
+
+.sort-block-field .action mat-icon
+{
+    cursor:pointer;
+    opacity:0.4;
+}
+
+.sort-block-field .action mat-icon:hover
+{
+    opacity:0.8;
+}

@@ -3,6 +3,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angu
 @Component({
     selector: 'sort-block',
     templateUrl: 'sortBlock.component.html',
+	styleUrls : [ 'sortBlock.component.css' ],
     inputs: [
         'config', 'query', 'queryList', 'addQuery', 'removeQuery', 'addCompoundQuery', 
         'queryFormat', 'buildQuery', 'buildInsideQuery', 'buildSubQuery', 'createQuery', 
@@ -189,7 +190,7 @@ export class SortBlockComponent implements OnInit, OnChanges {
     }
 
     setSortOrder(order, index) {
-        this.result.sort[index].order = order;
+        //this.result.sort[index].order = order;
         this.exeBuild();
     }
 

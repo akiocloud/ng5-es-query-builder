@@ -95,7 +95,8 @@ export class QueryBlocksComponent implements OnInit {
 	// builquery - this function handles everything to build the query
 	buildQuery() {
 		var results = this.result.resultQuery.result;
-		var queryParser = new QueryParser(results);
+		var sort = this.result.sort;
+		var queryParser = new QueryParser(results,sort);
 		this.result.resultQuery.parsed = queryParser.parse();
 	}
 

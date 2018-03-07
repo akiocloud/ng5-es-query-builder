@@ -1,10 +1,12 @@
 export class QueryParser 
 {
     private definitions: any
+    private sort: any;
 
-    constructor(definitions: any) 
+    constructor(definitions: any , sort : any)
     {
         this.definitions = definitions;
+        this.sort = sort;
     }
 
     public parse()
@@ -19,7 +21,31 @@ export class QueryParser
         var root = {id:0};
         var queries = this.parseChildDefinitions(root);
         var query = queries && queries.length ? queries[0] : null;
+        if ( query ) {
+            var sort = this.parseSort();
+            if ( sort && sort.length ) {
+                query.sort = sort;
+            }
+        }
         return query;
+    }
+
+    private parseSort()
+    {
+        var clauses = null;
+        if ( this.sort && this.sort.length )
+        {
+            clauses = [];
+            for ( let s of this.sort ) 
+            {
+                var clause = {};
+                clause[s.selectedField] = {
+                    "order" : s.order
+                };
+                clauses.push( clause );
+            }
+        }
+        return clauses;
     }
 
     private getChildDefinitions(parent_id: number) 

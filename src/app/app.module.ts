@@ -48,7 +48,10 @@ import
 	MatIconModule,
 	MatCardModule,
 	MatToolbarModule,
-	MatInputModule
+	MatInputModule,
+	MatRadioModule,
+	MatButtonToggleModule,
+	MatMenuModule
 } from '@angular/material';
 
 @NgModule({
@@ -98,7 +101,10 @@ import
 		MatIconModule,
 		MatCardModule,
 		MatToolbarModule,
-		MatInputModule
+		MatInputModule,
+		MatRadioModule,
+		MatButtonToggleModule,
+		MatMenuModule
   ],
   providers: [ElasticService],
   bootstrap: [AppComponent]
