@@ -1,6 +1,7 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'sort-block',
     templateUrl: 'sortBlock.component.html',
 	styleUrls : [ 'sortBlock.component.css' ],

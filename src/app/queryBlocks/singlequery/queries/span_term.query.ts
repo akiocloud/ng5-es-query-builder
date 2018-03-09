@@ -1,6 +1,7 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild, SimpleChange } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild, SimpleChange, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'span-term-query',
     templateUrl: 'span_term.query.html',
     inputs: ['getQueryFormat', 'querySelector']

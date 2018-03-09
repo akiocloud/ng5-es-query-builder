@@ -61,7 +61,7 @@
 
 			<!-- match query end -->
 
-			<!-- match query start -->
+			<!-- match_phrase query start -->
 			<div [hidden]="query.selectedQuery != 'match_phrase'" class="row">
 				<match_phrase-query
 					[appliedQuery]="query.appliedQuery"
@@ -73,9 +73,9 @@
 					>
 				</match_phrase-query>
 			</div>
-			<!-- match query end -->
+			<!-- match_phrase query end -->
 
-			<!-- match query start -->
+			<!-- match_phrase_prefix query start -->
 			<div [hidden]="query.selectedQuery != 'match_phrase_prefix'" class="row">
 				<match-phase-prefix-query
 					[appliedQuery]="query.appliedQuery"
@@ -87,9 +87,9 @@
 					>
 				</match-phase-prefix-query>
 			</div>
-			<!-- match query end -->
+			<!-- match_phrase_prefix query end -->
 
-			<!-- match query start -->
+			<!-- range query start -->
 			<div [hidden]="query.selectedQuery != 'range'" class="row">
 				<range-query
 					[appliedQuery]="query.appliedQuery"
@@ -101,9 +101,9 @@
 					>
 				</range-query>
 			</div>
-			<!-- match query end -->
+			<!-- range query end -->
 
-			<!-- match query start -->
+			<!-- gt query start -->
 			<div [hidden]="query.selectedQuery != 'gt'" class="row">
 				<gt-query
 					[appliedQuery]="query.appliedQuery"
@@ -115,9 +115,9 @@
 					>
 				</gt-query>
 			</div>
-			<!-- match query end -->
+			<!-- gt query end -->
 
-			<!-- match query start -->
+			<!-- lt query start -->
 			<div [hidden]="query.selectedQuery != 'lt'" class="row">
 				<lt-query
 					[appliedQuery]="query.appliedQuery"
@@ -129,9 +129,9 @@
 					>
 				</lt-query>
 			</div>
-			<!-- match query end -->
+			<!-- lt query end -->
 
-			<!-- match query start -->
+			<!-- term query start -->
 			<div [hidden]="query.selectedQuery != 'term'" class="row">
 				<term-query
 					[appliedQuery]="query.appliedQuery"
@@ -143,9 +143,9 @@
 					>
 				</term-query>
 			</div>
-			<!-- match query end -->
+			<!-- term query end -->
 
-			<!-- match query start -->
+			<!-- terms query start -->
 			<div [hidden]="query.selectedQuery != 'terms'" class="row">
 				<terms-query
 					[appliedQuery]="query.appliedQuery"
@@ -157,7 +157,7 @@
 					>
 				</terms-query>
 			</div>
-			<!-- match query end -->
+			<!-- terms query end -->
 
 			<!-- prefix query start -->
 			<div [hidden]="query.selectedQuery != 'prefix'" class="row">
@@ -173,7 +173,7 @@
 			</div>
 			<!-- prefix query end -->
 
-			<!-- multip_match query start -->
+			<!-- multi_match query start -->
 			<div [hidden]="query.selectedQuery != 'multi_match'" class="row">
 				<multi_match-query
 					[appliedQuery]="query.appliedQuery"
@@ -185,7 +185,7 @@
 					>
 				</multi_match-query>
 			</div>
-			<!-- multip_match query end -->
+			<!-- multi_match query end -->
 
 			<!-- query_string query start -->
 			<div [hidden]="query.selectedQuery != 'query_string'" class="row">
@@ -201,7 +201,7 @@
 			</div>
 			<!-- query_string query end -->
 
-			<!-- query_string query start -->
+			<!-- simple_query_string query start -->
 			<div [hidden]="query.selectedQuery != 'simple_query_string'" class="row">
 				<simple_query_string-query
 					[appliedQuery]="query.appliedQuery"
@@ -213,7 +213,7 @@
 					>
 				</simple_query_string-query>
 			</div>
-			<!-- query_string query end -->
+			<!-- simple_query_string query end -->
 
 			<!-- exists query start -->
 			<div [hidden]="query.selectedQuery != 'exists'" class="row">
@@ -412,7 +412,7 @@
 			</div>
 			<!-- span_term query end -->
 
-			<!-- span_term query start -->
+			<!-- span_first query start -->
 			<div [hidden]="query.selectedQuery != 'span_first'" class="row">
 				<span-first-query
 					[appliedQuery]="query.appliedQuery"
@@ -424,7 +424,7 @@
 					>
 				</span-first-query>
 			</div>
-			<!-- span_term query end -->
+			<!-- span_first query end -->
 
 		</div>
 

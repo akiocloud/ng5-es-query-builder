@@ -1,22 +1,30 @@
+import { ChangeDetectorRef } from "@angular/core";
+import { MessageService } from "./message.service";
+
 export class QueryParser 
 {
-    private definitions: any
-    private sort: any;
 
-    constructor(definitions: any , sort : any)
+    constructor( private result : any, private messageService : MessageService ){}
+
+    getSort(): any 
     {
-        this.definitions = definitions;
-        this.sort = sort;
+        return this.result.sort;
+    }
+
+    getDefinitions(): any 
+    {    
+		return this.result.resultQuery.result;
     }
 
     public parse()
     {
         
         //reset existing errors before new parsing
-        for (let definition of this.definitions) 
-        {
-            delete definition.errors;
-        }
+        // for (let definition of this.getDefinitions()) 
+        // {
+        //     delete definition.errors;
+        // }
+        //this.messageService.reset();
 
         var root = {id:0};
         var queries = this.parseChildDefinitions(root);
@@ -33,10 +41,10 @@ export class QueryParser
     private parseSort()
     {
         var clauses = null;
-        if ( this.sort && this.sort.length )
+        if ( this.getSort() && this.getSort().length )
         {
             clauses = [];
-            for ( let s of this.sort ) 
+            for ( let s of this.getSort() ) 
             {
                 var clause = {};
                 clause[s.selectedField] = {
@@ -51,7 +59,7 @@ export class QueryParser
     private getChildDefinitions(parent_id: number) 
     {
         var children = [];
-        for (let definition of this.definitions) 
+        for (let definition of this.getDefinitions()) 
         {
             if (definition.parent_id == parent_id) 
             {
@@ -73,13 +81,14 @@ export class QueryParser
 
     public parseChildDefinitions( parent : any )
     {
-        var queries = [];
-        var must = null;
-        var must_not = null;
-        var should = null;
-        var filter = null;
-        var errors = [];
-        var childDefinitions = this.getChildDefinitions( parent.id );
+        let queries = [];
+        let must = null;
+        let must_not = null;
+        let should = null;
+        let filter = null;
+        //var errors = [];
+        let childDefinitions = this.getChildDefinitions( parent.id );
+        this.messageService.getMessages(parent.id).next( new Array<string>() );
 
         if ( childDefinitions.length )
         {
@@ -87,7 +96,8 @@ export class QueryParser
             {
                 if ( this.isBoolQuery(definition) && this.isSpanQuery(parent) )
                 {
-                    errors.push("bool queries are not allowed inside span queries");
+                    //errors.push("bool queries are not allowed inside span queries");
+                    this.messageService.put(parent.id,"bool queries are not allowed inside span queries");
                     break;
                 }
                 else // if ( this.isBoolQuery(definition) )
@@ -100,7 +110,7 @@ export class QueryParser
                         }
                         else
                         {
-                            errors.push("bool query cannot accept more than one 'must' clauses");
+                            this.messageService.put(parent.id,"bool query cannot accept more than one 'must' clauses");
                             break;   
                         }
                     }
@@ -112,7 +122,7 @@ export class QueryParser
                         }
                         else
                         {
-                            errors.push("bool query cannot accept more than one 'must_not' clauses");
+                            this.messageService.put(parent.id,"bool query cannot accept more than one 'must_not' clauses");
                             break;   
                         }
                     }
@@ -124,7 +134,7 @@ export class QueryParser
                         }
                         else
                         {
-                            errors.push("bool query cannot accept more than one 'should' clauses");
+                            this.messageService.put(parent.id,"bool query cannot accept more than one 'should' clauses");
                             break;   
                         }
                     }
@@ -136,16 +146,10 @@ export class QueryParser
                         }
                         else
                         {
-                            errors.push("bool query cannot accept more than one 'filter' clauses");
+                            this.messageService.put(parent.id,"bool query cannot accept more than one 'filter' clauses");
                             break;   
                         }
                     }
-
-                /*
-                }
-                else if ( this.isSpanQuery(definition) )
-                {
-                */
                     else if ( definition.boolparam == 'span_near' )
                     {
                         queries.push( this.parseSpanNear(definition) )
@@ -183,29 +187,9 @@ export class QueryParser
 
         if ( ! parent.parent_id && queries.length > 1 )
         {
-            errors.push("cannot have more than one top level query");
+            this.messageService.put(parent.id,"cannot have more than one top level query");
         }
-
-        if ( errors.length ) 
-        {
-            /*
-             * some more dummy errors to
-             * help testing the layout
-             */
-            // errors.push("gabba gabba hey");
-            // errors.push("one of us ! one of us !");
-            // errors.push("All your base are belong to us");
-
-            for ( let definition of childDefinitions ) 
-            {
-                definition.errors = errors;
-            }
-            return null;
-        }
-        else
-        {
-            return queries;
-        }
+        return queries;
 
     }
 

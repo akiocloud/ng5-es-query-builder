@@ -1,11 +1,12 @@
 // Editable component which converts input or dropdown into editable ui
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild, SimpleChange } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild, SimpleChange, ChangeDetectionStrategy } from "@angular/core";
 
 // Markup contains 2 parts
 // 1) primary input box: which is 3rd input box in query box, in which user will write value,
 //    addOption button is optional if query contains optional paramater then add it
 // 2) Optional parameter: It is collection of option rows, each row will contain option property name and value
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'match-query',
 	templateUrl: 'match.query.html',
 	inputs: ['getQueryFormat', 'querySelector']

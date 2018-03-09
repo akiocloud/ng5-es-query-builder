@@ -1,6 +1,10 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from "@angular/core";
+import { MessageService } from "../../shared/message.service";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'compound-query',
 	templateUrl: 'compoundQuery.component.html',
 	styleUrls : [ 'compoundQuery.component.css' ],
@@ -10,8 +14,9 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angu
 		'setQueryFormat']
 })
 
-export class CompoundQueryComponent implements OnInit, OnChanges {
+export class CompoundQueryComponent implements OnInit, OnDestroy, OnChanges {
 
+	private messages : BehaviorSubject<string[]>;
 	public config: Object;
 	public queryList: any = this.queryList;
 	public addQuery: any;
@@ -26,10 +31,23 @@ export class CompoundQueryComponent implements OnInit, OnChanges {
 	@Input() types: any;
 	@Input() selectedTypes: any;
 	@Input() result: any;
+
+	constructor(
+		private messageService : MessageService , 
+		private cdRef : ChangeDetectorRef
+	) {}
 	
 	ngOnInit() {
+		this.messages = this
+		.messageService
+		.getMessages(this.query.parent_id);
+		
 		this.allFields = this.result.resultQuery.availableFields;
 		this.exeBuild();
+	}
+
+	ngOnDestroy(){
+		//this.messageService.unsubscribe();
 	}
 
 	ngOnChanges() {

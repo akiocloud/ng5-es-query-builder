@@ -3,10 +3,11 @@
 		<mat-icon  (click)="removeInQuery(query.id)">clear</mat-icon>
 		<div>Compound Query</div>
 	</div>
-	<div *ngFor="let error of query.errors">
+
+	<div *ngFor="let msg of messages | async">
 		<div class="warn">
 			<i class="material-icons">info_outline</i>
-			<span> {{ error }} </span>
+			<span> {{ msg }} </span>
 		</div>
 	</div>
 	<div class="compound-query-header">

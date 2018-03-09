@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
+//import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { QueryBlocksComponent } from "./queryBlocks/queryBlocks.component";
@@ -37,8 +39,8 @@ import { SpanTermQuery } from './queryBlocks/singlequery/queries/span_term.query
 import { SpanFirstQuery } from './queryBlocks/singlequery/queries/span_first.query';
 import { SortBlockComponent } from "./queryBlocks/sortBlock/sortBlock.component";
 
-import { ElasticModule } from './elastic/elastic.module';
-import { ElasticService } from './elastic/elastic.service';
+import { ElasticService } from './shared/elastic.service';
+import { MessageService } from './shared/message.service';
 
 import 
 {
@@ -94,7 +96,8 @@ import
 		BrowserModule,
 		BrowserAnimationsModule,
 		FormsModule,
-		ElasticModule,
+		//CommonModule,
+		HttpModule,
 		MatSelectModule,
 		MatButtonModule,
 		MatChipsModule,
@@ -106,7 +109,7 @@ import
 		MatButtonToggleModule,
 		MatMenuModule
   ],
-  providers: [ElasticService],
+  providers: [ElasticService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

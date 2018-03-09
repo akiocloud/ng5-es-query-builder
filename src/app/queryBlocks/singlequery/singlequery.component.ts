@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, AfterViewInit, ViewChild, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, AfterViewInit, ViewChild, Output, EventEmitter, ChangeDetectionStrategy } from "@angular/core";
 // import { MatchQuery } from './queries/match.query';
 // import { Match_phraseQuery } from './queries/match_phrase.query';
 // import { Match_phase_prefixQuery } from './queries/match_phase_prefix.query';
@@ -29,6 +29,7 @@ import { Component, OnInit, OnChanges, Input, AfterViewInit, ViewChild, Output, 
 declare var $: any;
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'single-query',
 	templateUrl: 'singlequery.component.html',
 	styleUrls:[ 'singlequery.component.css' ],
@@ -90,6 +91,8 @@ export class SinglequeryComponent implements OnInit, OnChanges, AfterViewInit {
 	
 	public informationList: any = {};
 
+	constructor() {}  
+
 	// on initialize set the query selector
 	ngOnInit() {
 		this.querySelector = '.query-' + this.queryIndex + '-' + this.internalIndex;
@@ -145,6 +148,7 @@ export class SinglequeryComponent implements OnInit, OnChanges, AfterViewInit {
 	getQueryFormat(outputQuery) {
 		this.query.appliedQuery = outputQuery;
 		this.buildQuery();
+		//this.cdr.markForCheck();
 	}
 
 	// delete query

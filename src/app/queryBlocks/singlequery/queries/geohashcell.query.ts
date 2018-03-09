@@ -1,6 +1,7 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'geohash-cell-query',
     templateUrl: 'geohashcell.query.html',
     inputs: ['getQueryFormat', 'querySelector']

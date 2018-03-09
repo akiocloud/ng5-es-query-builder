@@ -1,6 +1,7 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'match_phrase-query',
 	templateUrl: 'match_phrase.query.html',
 	inputs: [ 'getQueryFormat', 'querySelector']

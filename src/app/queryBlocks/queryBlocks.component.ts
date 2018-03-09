@@ -1,10 +1,12 @@
-import { Component, OnInit, OnChanges, EventEmitter, Input, Output } from "@angular/core";
+import { Component, OnInit, OnChanges, EventEmitter, Input, Output, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
 import { queryList } from "../shared/queryList";
 import { QueryParser } from "../shared/QueryParser";
+import { MessageService } from "../shared/message.service";
 
 declare var $: any;
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'query-blocks',
 	templateUrl: 'queryBlocks.component.html',
 	styleUrls: ['queryBlocks.component.css'],
@@ -43,6 +45,8 @@ export class QueryBlocksComponent implements OnInit {
 	@Input() query_info: any;
 	@Input() config: any;
 	@Output() setProp = new EventEmitter < any > ();
+
+	constructor( private messageService : MessageService ) {}
 
 	ngOnInit() {
 	}
@@ -93,10 +97,8 @@ export class QueryBlocksComponent implements OnInit {
 	}
 
 	// builquery - this function handles everything to build the query
-	buildQuery() {
-		var results = this.result.resultQuery.result;
-		var sort = this.result.sort;
-		var queryParser = new QueryParser(results,sort);
+	buildQuery = () => {
+		var queryParser = new QueryParser(this.result,this.messageService);
 		this.result.resultQuery.parsed = queryParser.parse();
 	}
 
